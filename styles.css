@@ -1,0 +1,158 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    --light-background: #fff;
+    --light-fonts: #000;
+    --light-display: rgb(220, 182, 28);
+    --dark-background: #0f0d0d;
+    --dark-fonts: #f6ecec;
+    --dark-display: rgb(76, 80, 54);
+    
+}
+
+@font-face {
+    font-family: 'DigitalClockFont';
+    src: url('/fonts/digital-7.ttf') format('ttf'),
+        url('/fonts/digital-7\ \(mono\).ttf') format('ttf');
+}
+
+
+body{
+    background-color: var(--light-background);
+}
+.head{
+    background-color: var(--light-display);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+
+}
+
+.player-detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-between;
+    align-items: center;
+    padding-top: 50px;
+    width: 35%;
+    height: 50px;
+    /* border: 2px solid black; */
+}
+.control{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.btn{
+    margin: 3px;
+    width: 120px;
+}
+.name{
+    font-family: "Madimi One", sans-serif;
+    font-size: 2rem;
+}
+.color-left{
+    border: 1px solid black;
+    background-color: white;
+    width: 60%;
+    height: 35px;
+    border-radius: 10px;
+    color: black;
+}
+.color-right {
+    color: white;
+    border: 1px solid black;
+    background-color: black;
+    width: 60%;
+    height: 35px;
+    border-radius: 10px;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.activeTime{
+    color: rgb(251, 253, 251);
+}
+
+.inactive{
+    color: rgb(132, 54, 54);
+}
+
+.board{
+    width: 44%;
+    height: 86dvh;
+    background-color: rgb(185, 184, 162);  
+    cursor: pointer; 
+}
+
+
+
+.active {
+    background-color: rgb(207, 138, 10) !important;
+}
+
+.current-p{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(235, 219, 189);
+    height: 86dvh;
+}
+
+.current-label{
+    margin: 30px 0;
+    /* background-color: white; */
+    font-family: 'Stalinist One';
+    border-radius: 10px;
+    text-align: center;
+    font-size: 2rem;
+    /* width: 24%; */
+    justify-content: center;
+}
+
+.current-pl {
+    margin: 25px 0;
+    background-color: white;
+    font-family: 'Madimi One';
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1rem;
+    /* width: 24%; */
+    justify-content: center;
+}
+img{
+    align-self: center;
+    margin-bottom: 50px;
+    border: 1px solid black;
+    width: 150px;
+}
+.pause-btn{
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(207, 138, 10) !important;
+    border: 2px solid black !important;
+    font-size: 1.5rem !important;
+    width: 65% !important;
+}
+.pause-btn:hover {
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(70, 206, 111) !important;
+    border: 2px solid black !important;
+    width: 65% !important;
+}
+.time{
+    display: block;
+    width: 85%;
+    height: 80%;
+    font-size: 11rem;
+    font-family: 'digital-7.ttf', 'digital-7 (mono).ttf', 'Madimi One';
+    margin: 40% auto;
+    padding-left: 10px;
+}
