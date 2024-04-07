@@ -15,6 +15,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -22,41 +23,52 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="cont">
             <div class="head">
                 <div class="player-detail" id="left-player">
-                    <div class="name">Player One</div>
+                    <div class="name left" id="playerOne">Player One</div>
                     <div class="color-left"></div>
                 </div>
                 <div class="control">
-                    <button type="button" class="btn btn-success" id="end">New Game</button>
-                    <button type="button" class="btn btn-primary" id="reset">Reset Game</button>
+                    <button type="button" class="btn btn-success" id="new">Reset Game Time</button>
 
                 </div>
 
                 <div class="player-detail" id="right-player">
                     <div class="color-right"></div>
-                    <div class="name">Player Two</div>
+                    <div class="name right" id="playerTwo">Player Two</div>
                 </div>
             </div>
 
             <div class="main">
-                <div class="player--0 board active" id="player--0">
+                <div class="board active" id="player--0">
                     <div class="time" id="time--0">
                         5:00
+                    </div>
+                    <div id="trophy1" class="hide-trophy">
+                        <img src="/img/trophy.png" alt="Winner Trophy">
                     </div>
                 </div>
                 <div class="current-p">
                     <p class="current-label" id="current">WHITE Starts</p>
                     <!-- <div class="current-pl">Player One: White</div> -->
-                    <img src="/img/white.png" alt="current-player" id="image">
+                    <img class="img" src="/img/white.png" alt="current-player" id="image">
                     <button type="button" class="btn pause-btn" id="pauseButton">Start Game</button>
+                    <p class="designed-by"><i>Designed By:</i> <a href="https://github.com/DeeOneCoder"
+                            target="_blank">Davidson Adepoju</a></p>
                 </div>
-                <div class="player--1 board" id="player--1">
+                <div class="board" id="player--1">
                     <div class="time" id="time--1">
                         5:00
                     </div>
+                    <div id="trophy2" class="hide-trophy">
+                        <img src="/img/trophy.png" alt="Winner Trophy">
+                    </div>
                 </div>
+            </div>
+            <div id="landscapeMessage">
+                Please rotate your device to landscape mode for optimal viewing.<br>
+                Pinch the screen to fit yours once this overlay is off.
             </div>
 
         </div>

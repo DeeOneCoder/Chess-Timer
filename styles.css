@@ -1,27 +1,21 @@
-body{
+body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     --light-background: #fff;
     --light-fonts: #000;
-    --light-display: rgb(220, 182, 28);
+    --light-display: rgb(215, 194, 155);
     --dark-background: #0f0d0d;
     --dark-fonts: #f6ecec;
     --dark-display: rgb(76, 80, 54);
-    
-}
-
-@font-face {
-    font-family: 'DigitalClockFont';
-    src: url('/fonts/digital-7.ttf') format('ttf'),
-        url('/fonts/digital-7\ \(mono\).ttf') format('ttf');
 }
 
 
-body{
+body {
     background-color: var(--light-background);
 }
-.head{
+
+.head {
     background-color: var(--light-display);
     display: flex;
     justify-content: space-between;
@@ -30,7 +24,19 @@ body{
 
 }
 
-.player-detail{
+.hidden {
+    display: none;
+}
+
+.gameOver {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.player-detail {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -41,21 +47,26 @@ body{
     height: 50px;
     /* border: 2px solid black; */
 }
-.control{
+
+.control {
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.btn{
+
+.btn {
     margin: 3px;
     width: 120px;
+    border: 1px solid white;
 }
-.name{
+
+.name {
     font-family: "Madimi One", sans-serif;
     font-size: 2rem;
 }
-.color-left{
+
+.color-left {
     border: 1px solid black;
     background-color: white;
     width: 60%;
@@ -63,6 +74,7 @@ body{
     border-radius: 10px;
     color: black;
 }
+
 .color-right {
     color: white;
     border: 1px solid black;
@@ -71,41 +83,70 @@ body{
     height: 35px;
     border-radius: 10px;
 }
-.main{
+
+.main {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.activeTime{
+.activeTime {
     color: rgb(251, 253, 251);
 }
 
-.inactive{
+.inactive {
     color: rgb(132, 54, 54);
 }
 
-.board{
+.board {
     width: 44%;
-    height: 86dvh;
-    background-color: rgb(185, 184, 162);  
-    cursor: pointer; 
+    height: auto;
+    background-color: rgb(185, 184, 162);
+    cursor: pointer;
 }
 
+.board-lose {
+    width: 44% !important;
+    height: 86dvh;
+    background-color: rgb(2, 18, 2) !important;
+}
 
+.time-lose {
+    margin-top: 35%;
+    color: red !important;
+    text-align: center !important;
+    font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    padding-left: 0 !important;
+    font-size: 5.7rem !important;
+}
+
+.board-win {
+    width: 44% !important;
+    height: 86dvh;
+    background-color: rgb(3, 82, 3) !important;
+}
+
+.time-win {
+    margin-top: 35%;
+    color: gold !important;
+    text-align: center !important;
+    font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    padding-left: 0 !important;
+    font-size: 3.5rem !important;
+}
 
 .active {
     background-color: rgb(207, 138, 10) !important;
 }
 
-.current-p{
+.current-p {
     display: flex;
     flex-direction: column;
     background-color: rgb(235, 219, 189);
     height: 86dvh;
 }
 
-.current-label{
+.current-label {
     margin: 30px 0;
     /* background-color: white; */
     font-family: 'Stalinist One';
@@ -126,33 +167,760 @@ body{
     /* width: 24%; */
     justify-content: center;
 }
-img{
+
+img {
     align-self: center;
     margin-bottom: 50px;
     border: 1px solid black;
-    width: 150px;
+    width: 40%;
 }
-.pause-btn{
+
+.pause-btn {
     display: block;
     margin: 0 auto;
     background-color: rgb(207, 138, 10) !important;
-    border: 2px solid black !important;
+    border: 6px solid rgb(207, 138, 10) !important;
     font-size: 1.5rem !important;
     width: 65% !important;
 }
+
 .pause-btn:hover {
     display: block;
     margin: 0 auto;
     background-color: rgb(70, 206, 111) !important;
-    border: 2px solid black !important;
+    border: 6px solid rgb(154, 220, 174) !important;
     width: 65% !important;
 }
-.time{
+
+.time {
     display: block;
-    width: 85%;
-    height: 80%;
-    font-size: 11rem;
-    font-family: 'digital-7.ttf', 'digital-7 (mono).ttf', 'Madimi One';
-    margin: 40% auto;
-    padding-left: 10px;
+    width: 100%;
+    /* height: 80%; */
+    font-size: 16rem;
+    font-family: 'Micro 5', 'Madimi One';
+    margin: 20% auto 0;
+    padding-left: 15.5%;
+}
+
+#trophy1,
+#trophy2 {
+    display: block;
+    width: 35%;
+    align-self: center;
+    margin: 0 auto;
+    justify-self: center;
+    padding-left: 5%;
+}
+
+.hide-trophy {
+    display: none !important;
+}
+
+.designed-by {
+    text-align: center;
+    margin-top: 45px;
+    font-size: 1rem;
+}
+
+#landscapeMessage {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 50%;
+}
+
+/*Mobile Screens especially phones */
+@media screen and (max-width: 915px) and (orientation: landscape) {
+    .cont {
+        width: 100% !important;
+    }
+
+    .head {
+        background-color: var(--light-display);
+        display: flex;
+        justify-content: space-between;
+        width: 100% !important;
+        height: 50px;
+
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .gameOver {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .player-detail {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+        width: 50%;
+        /* height: 40px; */
+        /* border: 2px solid black; */
+    }
+
+    .control {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 3px;
+        width: 160px;
+        border: 1px solid white;
+    }
+
+    .name {
+        font-family: "Madimi One", sans-serif;
+        font-size: 1.2rem;
+    }
+
+    .color-left {
+        border: 1px solid black;
+        background-color: white;
+        width: 30%;
+        height: 30px;
+        border-radius: 10px;
+        color: black;
+    }
+
+    .color-right {
+        color: white;
+        border: 1px solid black;
+        background-color: black;
+        width: 30%;
+        height: 30px;
+        border-radius: 10px;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .activeTime {
+        color: rgb(251, 253, 251);
+    }
+
+    .inactive {
+        color: rgb(132, 54, 54);
+    }
+
+    .board {
+        width: 44%;
+        height: auto;
+        background-color: rgb(185, 184, 162);
+        cursor: pointer;
+    }
+
+    .board-lose {
+        width: 44% !important;
+        height: 86dvh;
+        background-color: rgb(2, 18, 2) !important;
+    }
+
+    .time-lose {
+        margin-top: 25%;
+        color: red !important;
+        text-align: center !important;
+        font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+        padding-left: 0 !important;
+        font-size: 3.5rem !important;
+    }
+
+    .board-win {
+        width: 44% !important;
+        height: 86dvh;
+        background-color: rgb(3, 82, 3) !important;
+    }
+
+    .time-win {
+        margin-top: 20%;
+        color: gold !important;
+        text-align: center !important;
+        font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+        padding-left: 0 !important;
+        font-size: 2.2rem !important;
+    }
+
+    .active {
+        background-color: rgb(207, 138, 10) !important;
+    }
+
+    .current-p {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(235, 219, 189);
+        height: 86dvh;
+    }
+
+    .current-label {
+        margin: 7px 0;
+        /* background-color: white; */
+        font-family: 'Stalinist One';
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.1rem;
+        /* width: 24%; */
+        justify-content: center;
+    }
+
+    .current-pl {
+        margin: 5px 0;
+        background-color: white;
+        font-family: 'Madimi One';
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1rem;
+        /* width: 24%; */
+        justify-content: center;
+    }
+
+    .img {
+        align-self: center;
+        margin-bottom: 15px;
+        border: 1px solid black;
+        width: 50%;
+        height: 160px;
+    }
+
+    .pause-btn {
+        display: block;
+        margin: 0 auto;
+        background-color: rgb(207, 138, 10) !important;
+        border: 2px solid rgb(207, 138, 10) !important;
+        font-size: 1rem !important;
+        width: 75% !important;
+    }
+
+    .pause-btn:hover {
+        display: block;
+        margin: 0 auto;
+        background-color: rgb(70, 206, 111) !important;
+        border: 2px solid rgb(154, 220, 174) !important;
+        width: 75% !important;
+    }
+
+    .time {
+        display: block;
+        width: 100%;
+        /* height: 80%; */
+        font-size: 10rem;
+        font-family: 'Micro 5', 'Madimi One';
+        margin: 10% auto 0;
+        padding-left: 15.5%;
+    }
+
+    #trophy1,
+    #trophy2 {
+        display: block;
+        width: 100%;
+        align-self: center;
+        margin: 0 auto;
+        justify-self: center;
+        padding-left: 35%;
+    }
+
+    .hide-trophy {
+        display: none !important;
+    }
+
+    .designed-by {
+        text-align: center;
+        margin-top: 25px;
+        font-size: .7rem;
+    }
+
+    #landscapeMessage {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 450px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        padding-top: 30%;
+    }
+}
+
+/* Tablet breakpoint */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Your tablet-specific CSS rules here */
+    .cont {
+            width: 100% !important;
+        }
+    
+        .head {
+            background-color: var(--light-display);
+            display: flex;
+            justify-content: space-between;
+            width: 100% !important;
+            height: 50px;
+    
+        }
+    
+        .hidden {
+            display: none;
+        }
+    
+        .gameOver {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    
+        .player-detail {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            width: 50%;
+            /* height: 40px; */
+            /* border: 2px solid black; */
+        }
+    
+        .control {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    
+        .btn {
+            margin: 3px;
+            width: 160px;
+            border: 1px solid white;
+        }
+    
+        .name {
+            font-family: "Madimi One", sans-serif;
+            font-size: 1.2rem;
+        }
+    
+        .color-left {
+            border: 1px solid black;
+            background-color: white;
+            width: 30%;
+            height: 30px;
+            border-radius: 10px;
+            color: black;
+        }
+    
+        .color-right {
+            color: white;
+            border: 1px solid black;
+            background-color: black;
+            width: 30%;
+            height: 30px;
+            border-radius: 10px;
+        }
+    
+        .main {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    
+        .activeTime {
+            color: rgb(251, 253, 251);
+        }
+    
+        .inactive {
+            color: rgb(132, 54, 54);
+        }
+    
+        .board {
+            width: 44%;
+            height: auto;
+            background-color: rgb(185, 184, 162);
+            cursor: pointer;
+        }
+    
+        .board-lose {
+            width: 44% !important;
+            height: 86dvh;
+            background-color: rgb(2, 18, 2) !important;
+        }
+    
+        .time-lose {
+            margin-top: 25%;
+            color: red !important;
+            text-align: center !important;
+            font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+            padding-left: 0 !important;
+            font-size: 3.5rem !important;
+        }
+    
+        .board-win {
+            width: 44% !important;
+            height: 86dvh;
+            background-color: rgb(3, 82, 3) !important;
+        }
+    
+        .time-win {
+            margin-top: 20%;
+            color: gold !important;
+            text-align: center !important;
+            font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+            padding-left: 0 !important;
+            font-size: 2.2rem !important;
+        }
+    
+        .active {
+            background-color: rgb(207, 138, 10) !important;
+        }
+    
+        .current-p {
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(235, 219, 189);
+            height: 86dvh;
+        }
+    
+        .current-label {
+            margin: 7px 0;
+            /* background-color: white; */
+            font-family: 'Stalinist One';
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+            /* width: 24%; */
+            justify-content: center;
+        }
+    
+        .current-pl {
+            margin: 5px 0;
+            background-color: white;
+            font-family: 'Madimi One';
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1rem;
+            /* width: 24%; */
+            justify-content: center;
+        }
+    
+        .img {
+            align-self: center;
+            margin-bottom: 15px;
+            border: 1px solid black;
+            width: 50%;
+            height: 160px;
+        }
+    
+        .pause-btn {
+            display: block;
+            margin: 0 auto;
+            background-color: rgb(207, 138, 10) !important;
+            border: 2px solid rgb(207, 138, 10) !important;
+            font-size: 1rem !important;
+            width: 75% !important;
+        }
+    
+        .pause-btn:hover {
+            display: block;
+            margin: 0 auto;
+            background-color: rgb(70, 206, 111) !important;
+            border: 2px solid rgb(154, 220, 174) !important;
+            width: 75% !important;
+        }
+    
+        .time {
+            display: block;
+            width: 100%;
+            /* height: 80%; */
+            font-size: 10rem;
+            font-family: 'Micro 5', 'Madimi One';
+            margin: 10% auto 0;
+            padding-left: 15.5%;
+        }
+    
+        #trophy1,
+        #trophy2 {
+            display: block;
+            width: 100%;
+            align-self: center;
+            margin: 0 auto;
+            justify-self: center;
+            padding-left: 35%;
+        }
+    
+        .hide-trophy {
+            display: none !important;
+        }
+    
+        .designed-by {
+            text-align: center;
+            margin-top: 25px;
+            font-size: .7rem;
+        }
+    
+        #landscapeMessage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 450px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding-top: 30%;
+        }
+}
+
+/* Laptop breakpoint */
+@media screen and (min-width: 1024px) {
+
+    /* Your laptop-specific CSS rules here */
+    body {
+        background-color: var(--light-background);
+    }
+
+    .head {
+        background-color: var(--light-display);
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100px;
+
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .gameOver {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .player-detail {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: space-between;
+        align-items: center;
+        padding-top: 50px;
+        width: 35%;
+        height: 50px;
+        /* border: 2px solid black; */
+    }
+
+    .control {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 3px;
+        width: 120px;
+        border: 1px solid white;
+    }
+
+    .name {
+        font-family: "Madimi One", sans-serif;
+        font-size: 2rem;
+    }
+
+    .color-left {
+        border: 1px solid black;
+        background-color: white;
+        width: 60%;
+        height: 35px;
+        border-radius: 10px;
+        color: black;
+    }
+
+    .color-right {
+        color: white;
+        border: 1px solid black;
+        background-color: black;
+        width: 60%;
+        height: 35px;
+        border-radius: 10px;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .activeTime {
+        color: rgb(251, 253, 251);
+    }
+
+    .inactive {
+        color: rgb(132, 54, 54);
+    }
+
+    .board {
+        width: 44%;
+        height: auto;
+        background-color: rgb(185, 184, 162);
+        cursor: pointer;
+    }
+
+    .board-lose {
+        width: 44% !important;
+        height: 86dvh;
+        background-color: rgb(2, 18, 2) !important;
+    }
+
+    .time-lose {
+        margin-top: 35%;
+        color: red !important;
+        text-align: center !important;
+        font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+        padding-left: 0 !important;
+        font-size: 5.7rem !important;
+    }
+
+    .board-win {
+        width: 44% !important;
+        height: 86dvh;
+        background-color: rgb(3, 82, 3) !important;
+    }
+
+    .time-win {
+        margin-top: 35%;
+        color: gold !important;
+        text-align: center !important;
+        font-family: 'Madimi One', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+        padding-left: 0 !important;
+        font-size: 3.5rem !important;
+    }
+
+    .active {
+        background-color: rgb(207, 138, 10) !important;
+    }
+
+    .current-p {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(235, 219, 189);
+        height: 86dvh;
+    }
+
+    .current-label {
+        margin: 30px 0;
+        /* background-color: white; */
+        font-family: 'Stalinist One';
+        border-radius: 10px;
+        text-align: center;
+        font-size: 2rem;
+        /* width: 24%; */
+        justify-content: center;
+    }
+
+    .current-pl {
+        margin: 25px 0;
+        background-color: white;
+        font-family: 'Madimi One';
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1rem;
+        /* width: 24%; */
+        justify-content: center;
+    }
+
+    .img {
+        align-self: center;
+        margin-bottom: 50px;
+        border: 1px solid black;
+        width: 50%;
+    }
+
+    .pause-btn {
+        display: block;
+        margin: 0 auto;
+        background-color: rgb(207, 138, 10) !important;
+        border: 6px solid rgb(207, 138, 10) !important;
+        font-size: 1.5rem !important;
+        width: 65% !important;
+    }
+
+    .pause-btn:hover {
+        display: block;
+        margin: 0 auto;
+        background-color: rgb(70, 206, 111) !important;
+        border: 6px solid rgb(154, 220, 174) !important;
+        width: 65% !important;
+    }
+
+    .time {
+        display: block;
+        width: 100%;
+        /* height: 80%; */
+        font-size: 16rem;
+        font-family: 'Micro 5', 'Madimi One';
+        margin: 20% auto 0;
+        padding-left: 15.5%;
+    }
+
+    #trophy1,
+    #trophy2 {
+        display: block;
+        width: 35%;
+        align-self: center;
+        margin: 0 auto;
+        justify-self: center;
+        padding-left: 5%;
+    }
+
+    .hide-trophy {
+        display: none !important;
+    }
+
+    .designed-by {
+        text-align: center;
+        margin-top: 45px;
+        font-size: 1rem;
+    }
+
+    #landscapeMessage {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 12px;
+        text-align: center;
+        padding-top: 50%;
+    }
 }
