@@ -8,8 +8,28 @@ class Player {
     }
 }
 
+// Function to hide address ba
+
+
 //This is to ensure players on mobile use the application in landscape mode;
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", function () {
+    function hideAddressBar() {
+    if (window.innerWidth > window.innerHeight) {
+        // Landscape mode
+        setTimeout(() => {
+            window.scrollTo(0, 1); // Scroll to hide the address bar
+        }, 0);
+    }
+}
+
+// Listen for orientation change and resize events
+window.addEventListener("orientationchange", hideAddressBar);
+window.addEventListener("resize", hideAddressBar);
+
+// Initially hide address bar on page load
+    window.addEventListener("load", hideAddressBar);
+    
+    
   const landscapeMessage = document.getElementById('landscapeMessage');
 
   function checkOrientation() {
@@ -52,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Using Prompt to collect the information
         let playerOneStartTime = prompt(
-            "Enter Player Two time:\nMins only -> 3\nMins:Seconds -> 3:30\nPress Enter Key/Ok for: 10:00 mins\nPress Escape Key/Cancel for 5:00 mins\n\nGood Luck!",
+            "Enter Player One time:\nMins only -> 3\nMins:Seconds -> 3:30\nPress Enter Key/Ok for: 10:00 mins\nPress Escape Key/Cancel for 5:00 mins\n\nGood Luck!",
             "10:00"
         );
         let playerTwoStartTime = prompt(
@@ -241,6 +261,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            if (image.src.includes("/img/white.png")) {
+                image.src = "/img/black.png";
+            } else {
+                image.src = "/img/white.png";
+            }
+            
+
             if (playerOneBoard.classList.contains("active")) {
                 playerOneBoard.removeEventListener("click", switchPlayer);
                 playerTwoBoard.addEventListener("click", switchPlayer);
@@ -252,11 +279,6 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(interval);
             activeTime = getNextPlayerTime();
             // console.log("Current Image Source:", image.src);
-            if (image.src.includes("/img/white.png")) {
-                image.src = "/img/black.png";
-            } else {
-                image.src = "/img/white.png";
-            }
             toggleFunction();
             timer(activeTime);
 
